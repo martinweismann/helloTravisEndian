@@ -3,9 +3,19 @@ language: ruby
 services:
   - docker
 
+# https://eyskens.me/multiarch-docker-images/
 before_install:
-- docker pull ubuntu
-- docker run ubuntu /bin/sh -c "ls -ahl"
+  - uname -m
+  - docker pull multiarch/qemu-user-static
+  - docker pull arm64v8/ubuntu
+  - docker run --rm -t arm64v8/ubuntu uname -m
+  - "docker run --rm --privileged multiarch/qemu-user-static:register"
+  - docker run --rm -t arm64v8/ubuntu uname -m
+  
+
+#- docker pull ubuntu
+#- docker run ubuntu /bin/sh -c "ls -ahl"
+#- docker run ubuntu /bin/sh -c "lscpu"
 
 script:
 - pwd
