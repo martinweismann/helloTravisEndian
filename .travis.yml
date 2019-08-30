@@ -10,8 +10,8 @@ before_install:
   - uname -m
   - docker pull multiarch/qemu-user-static
   - docker pull arm64v8/ubuntu
-  - docker run arm64v8/ubuntu /bin/sh -c "uname -m"
   - docker run --rm --privileged multiarch/qemu-user-static:register
+  - docker run arm64v8/ubuntu /bin/sh -c "uname -m"
   - docker run arm64v8/ubuntu /bin/sh -c "uname -m"
   
 
