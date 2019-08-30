@@ -1,0 +1,21 @@
+# Configuration file for Travis CI (https://travis-ci.org)
+#
+# It used as a status check for all PRs and
+# to generate the build-status-icon in the main README.md-file.
+
+language: cpp
+
+matrix:
+  include:
+    # ARM, 64-bit, Little-endian
+    - name: aarch64-linux
+      env:
+        - BASE_IMAGE=arm64v8/ubuntu
+    # IBM Z and LinuxONE, 64-bit, Big-endian
+    - name: s390x-linux
+      env:
+        - BASE_IMAGE=s390x/ubuntu
+script:
+    - pwd
+    - ls -al
+    - lscpu
