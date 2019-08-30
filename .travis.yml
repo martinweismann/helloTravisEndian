@@ -1,36 +1,11 @@
-# Configuration file for Travis CI (https://travis-ci.org)
-#
-# It used as a status check for all PRs and
-# to generate the build-status-icon in the main README.md-file.
+language: ruby
 
-language: cpp
+services:
+  - docker
 
-matrix:
-  include:
-    # ARM, 64-bit, Little-endian
-    - name: aarch64-linux
-      env:
-        - BASE_IMAGE=arm64v8/ubuntu
-    # IBM Z and LinuxONE, 64-bit, Big-endian
-    - name: s390x-linux
-      env:
-        - BASE_IMAGE=s390x/ubuntu
-    
-    # PowerPC, 64-bit, Big-endian
-    - name: fedora-s390x-linux
-      env:
-        - BASE_IMAGE=s390x/fedora
-        - OS_NAME=fedora
-       
 before_install:
-  # Show environment.
-  - uname -a
-  - id
-  - pwd
-  - "OS_NAME=${OS_NAME:-ubuntu}"
-  - "BASE_IMAGE=${BASE_IMAGE:ubuntu}"
-  
+- docker pull ubuntu
+- docker run ubuntu /bin/sh -c "ls -ahl"
+
 script:
-    - pwd
-    - ls -al
-    - lscpu
+- pwd
