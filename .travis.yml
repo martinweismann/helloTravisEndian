@@ -31,6 +31,8 @@ sudo: required
 
 language: bash
 
+dist: xenial
+
 services:
   - docker
 
@@ -39,7 +41,7 @@ before_install:
   - uname -m
   - docker pull multiarch/qemu-user-static
   - docker pull arm64v8/ubuntu
-  - sudo docker run --rm --privileged multiarch/qemu-user-static --reset
+  - sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
   - sudo docker run --rm -t arm64v8/ubuntu uname -m
   - sudo docker run arm64v8/ubuntu /bin/sh -c "uname -m"
   
