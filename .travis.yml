@@ -39,11 +39,13 @@ services:
 # https://eyskens.me/multiarch-docker-images/
 before_install:
   - uname -m
+  - lscpu
   - docker pull multiarch/qemu-user-static
   - docker pull arm64v8/ubuntu
   - sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
   - sudo docker run --rm -t arm64v8/ubuntu uname -m
   - sudo docker run arm64v8/ubuntu /bin/sh -c "uname -m"
+  - sudo docker run arm64v8/ubuntu /bin/sh -c "lscpu"
   
 
 #- docker pull ubuntu
