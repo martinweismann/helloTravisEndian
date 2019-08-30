@@ -15,6 +15,21 @@ matrix:
     - name: s390x-linux
       env:
         - BASE_IMAGE=s390x/ubuntu
+    
+    # PowerPC, 64-bit, Big-endian
+    - name: fedora-s390x-linux
+      env:
+        - BASE_IMAGE=s390x/fedora
+        - OS_NAME=fedora
+       
+before_install:
+  # Show environment.
+  - uname -a
+  - id
+  - pwd
+  - "OS_NAME=${OS_NAME:-ubuntu}"
+  - "BASE_IMAGE=${BASE_IMAGE:ubuntu}"
+  
 script:
     - pwd
     - ls -al
