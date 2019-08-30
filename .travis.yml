@@ -17,6 +17,9 @@ before_install:
   - docker build --volume type=bind,source=/tmp/qemu-ppc64le-static,target=/usr/bin/qemu-ppc64le-static  -f Dockerfile.ppc64le -t ppc64le/mysql .
   # Build Intel(amd64) Docker image
   - docker build -f Dockerfile -t amd64/mysql .
+  - docker run ppc64le/mysql /bin/sh "lscpu"
+  - docker run amd64/mysql /bin/sh "lscpu"
+  
 install: true
 before_script: true
 script: docker images
