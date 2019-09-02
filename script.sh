@@ -3,6 +3,7 @@
 
 lscpu
 uname -m
+exit 0 
 
 git clone https://github.com/3MFConsortium/lib3mf.git
 cd lib3mf
