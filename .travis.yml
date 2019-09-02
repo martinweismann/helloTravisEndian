@@ -49,7 +49,7 @@ before_install:
   - docker run arm64v8/ubuntu /bin/sh -c "lscpu"
   - docker run s390x/ubuntu /bin/sh -c "uname -m"
   - docker run s390x/ubuntu /bin/sh -c "lscpu"
-  - docker run s390x/ubuntu /bin/sh -c "sudo apt-get -y install cmake git gcc g++"
+  - docker run s390x/ubuntu /bin/sh -c "apt-get -y install cmake git gcc g++"
   - docker run s390x/ubuntu /bin/sh -c "git clone https://github.com/3MFConsortium/lib3mf.git"
   - docker run s390x/ubuntu /bin/sh -c "cd lib3mf; git checkout ${TRAVIS_BRANCH}"
   - docker run s390x/ubuntu /bin/sh -c "cd lib3mf; git submodule update --init --recursive"
