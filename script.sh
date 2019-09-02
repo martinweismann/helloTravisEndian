@@ -12,4 +12,4 @@ sh cmake/GenerateMake.sh
 cd build
 # cmake --build .
 make -j4
-ctest .
+ctest -V .
