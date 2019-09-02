@@ -41,18 +41,10 @@ before_install:
   - uname -m
   - lscpu
   - docker pull multiarch/qemu-user-static
-  - docker pull arm64v8/ubuntu
-  - docker pull s390x/ubuntu
-  - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-  # - docker run --rm -t arm64v8/ubuntu uname -m
-  - docker run arm64v8/ubuntu /bin/sh -c "uname -m"
-  - docker run arm64v8/ubuntu /bin/sh -c "lscpu"
-  - docker run s390x/ubuntu /bin/sh -c "uname -m"
-  - docker run s390x/ubuntu /bin/sh -c "lscpu"
-  - docker run arm64v8/ubuntu /bin/sh -c "apt-get -y install cmake git gcc g++"
-  - docker run arm64v8/ubuntu /bin/sh -c "git clone https://github.com/3MFConsortium/lib3mf.git"
-  - docker run arm64v8/ubuntu /bin/sh -c "cd lib3mf; git checkout ${TRAVIS_BRANCH}"
-  - docker run arm64v8/ubuntu /bin/sh -c "cd lib3mf; git submodule update --init --recursive"
+  - docker pull multiarch/ubuntu-debootstrap:powerpc-xenial 
+  - docker build -t ppc-xenial .
+    # - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
   
 
 #- docker pull ubuntu
@@ -61,3 +53,4 @@ before_install:
 
 script:
 - pwd
+- docker run ppc-xenial
