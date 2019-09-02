@@ -17,7 +17,7 @@ matrix:
 before_install:
   - uname -m
   - lscpu
-  - if [[ "$BUILDMODE" = "bigendian" ]] then;
+  - if [[ "$BUILDMODE" = "bigendian" ]]; then;
     docker pull multiarch/qemu-user-static ;
     docker pull multiarch/ubuntu-debootstrap:powerpc-xenial ;
     docker run --rm --privileged multiarch/qemu-user-static --reset -p y ;
