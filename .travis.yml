@@ -1,29 +1,14 @@
-sudo: required
-
 language: cpp
 
-services:
-  - docker
 
 
 matrix:
   include:
-    - os: linux
+    - os: windows
       compiler: gcc
-      env: BUILDMODE="native"
-    - os: linux
-      env: BUILDMODE="bigendian"
 
 before_install:
-  - uname -m
-  - lscpu
-  - if [[ "$BUILDMODE" = "bigendian" ]]; then
-    docker pull multiarch/qemu-user-static ;
-    docker pull multiarch/ubuntu-debootstrap:powerpc-xenial ;
-    docker run --rm --privileged multiarch/qemu-user-static --reset -p y ;
-    docker build -t ppc-xenial . ;
-    fi
-
+  - ls
 
 script:
-- if [[ "$BUILDMODE" = "bigendian" ]]; then docker run ppc-xenial; fi
+- ls
